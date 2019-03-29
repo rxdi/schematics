@@ -1,4 +1,4 @@
-import { Injectable } from '@rxdi/core';
+import { Module } from '@gapi/core';
 
-@Injectable()
-export class <%= classify(name) %> {}
+@Module({})
+export class <%= classify(name) %>Module {}

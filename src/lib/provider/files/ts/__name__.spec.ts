@@ -1,18 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import 'jest';
+import { Container, createTestBed } from '@gapi/core';
 import { <%= classify(name) %> } from './<%= name %>';
 
-describe('<%= classify(name) %>', () => {
-  let provider: <%= classify(name) %>;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [<%= classify(name) %>],
-    }).compile();
-
-    provider = module.get<<%= classify(name) %>>(<%= classify(name) %>);
+describe('<%= classify(name) %> Injectable', () => {
+  beforeAll(async () => {
+    await createTestBed({
+      imports: [],
+      services: [<%= classify(name) %>]
+    }).toPromise();
   });
 
-  it('should be defined', () => {
-    expect(provider).toBeDefined();
+  it('should be defined', async done => {
+    expect(Container.has(<%= classify(name) %>)).toBeTruthy();
   });
 });
