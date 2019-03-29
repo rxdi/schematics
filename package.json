@@ -1,6 +1,6 @@
 {
   "name": "@rxdi/schematics",
-  "version": "0.0.422",
+  "version": "0.0.423",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
