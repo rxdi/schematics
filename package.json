@@ -1,0 +1,22 @@
+{
+  "name": "@rxdi/schematics",
+  "version": "0.0.411",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "rm -rf utils lib && tsc && cp -r ./src/* ."
+  },
+  "dependencies": {
+    "@angular-devkit/core": "^7.3.7",
+    "@angular-devkit/schematics": "^7.3.7",
+    "@angular-devkit/schematics-cli": "^0.13.7",
+    "chalk": "^2.4.2",
+    "node-emoji": "^1.10.0",
+    "ts-morph": "^1.3.1"
+  },
+  "schematics": "./collection.json",
+  "devDependencies": {
+    "@types/node": "^11.12.0",
+    "typescript": "^3.3.4000"
+  }
+}
