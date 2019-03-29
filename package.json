@@ -2,7 +2,6 @@
   "name": "@rxdi/schematics",
   "version": "0.0.423",
   "description": "",
-  "main": "./dist/index.js",
   "scripts": {
     "build": "rm -rf utils lib && tsc && cp -r ./src/* .",
     "npm-publish": "npm publish --update-readme --access public"
