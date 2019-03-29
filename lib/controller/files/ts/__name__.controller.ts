@@ -18,6 +18,6 @@ export class <%= classify(name) %>Controller {
     @Type(<%= classify(name) %>Type)
     @Query()
     initQuery() {
-        return {}
+        return {};
     }
 }

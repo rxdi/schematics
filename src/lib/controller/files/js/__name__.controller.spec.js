@@ -1,6 +1,15 @@
 import 'jest';
 import { map } from 'rxjs/operators';
-import { Container, sendRequest, createTestBed, HapiModule, GraphQLModule, HAPI_SERVER } from '@gapi/core';
+import {
+  Container,
+  sendRequest,
+  createTestBed,
+  HapiModule,
+  GraphQLModule,
+  HAPI_SERVER,
+  setConfigServer,
+  setConfigGraphql
+} from '@gapi/core';
 import { Server } from 'hapi';
 import { from } from 'rxjs';
 import { <%= classify(name) %>Controller } from './<%= name %>.controller';
@@ -12,8 +21,8 @@ describe('<%= classify(name) %> Controller', () => {
       imports: [],
       controllers: [<%= classify(name) %>Controller]
     }, [
-        HapiModule.forRoot(),
-        GraphQLModule.forRoot(null)
+        HapiModule.forRoot(setConfigServer()),
+        GraphQLModule.forRoot(setConfigGraphql())
       ])
       .toPromise();
       server = Container.get<Server>(HAPI_SERVER);
@@ -41,7 +50,7 @@ describe('<%= classify(name) %> Controller', () => {
       }),
     )
       .subscribe(async res => {
-        expect(res.init).toBeTruthy()
+        expect(res.init).toBeFalsy();
         done();
       }, err => {
         console.error(err);

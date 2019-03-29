@@ -6,11 +6,12 @@ describe('<%= classify(name) %> Service', () => {
   beforeAll(async () => {
     await createTestBed({
       imports: [],
-      services: [<%= classify(name) %>Service]
+      providers: [<%= classify(name) %>Service]
     }).toPromise();
   });
 
-  it('should be defined', async done => {
+  it('should be defined', done => {
     expect(Container.has(<%= classify(name) %>Service)).toBeTruthy();
+    done();
   });
 });

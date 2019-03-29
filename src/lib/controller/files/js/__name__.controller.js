@@ -7,7 +7,7 @@ export const <%= classify(name) %>Type = new GraphQLObjectType({
             type: GraphQLString
         }
     }
-})
+});
 
 @Controller<GraphQLControllerOptions>({
     guards: [],
@@ -18,6 +18,6 @@ export class <%= classify(name) %>Controller {
     @Type(<%= classify(name) %>Type)
     @Query()
     initQuery() {
-        return {}
+        return {};
     }
 }

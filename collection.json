@@ -26,6 +26,11 @@
       "description": "Create a Gapi type.",
       "schema": "./lib/type/schema.json"
     },
+    "effect": {
+      "factory": "./lib/effect/effect.factory#main",
+      "description": "Create a Gapi effect.",
+      "schema": "./lib/effect/schema.json"
+    },
     "decorator": {
       "factory": "./lib/decorator/decorator.factory#main",
       "description": "Create a Gapi decorator.",
