@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Injectable } from '@rxdi/core';
 
-@Module({})
-export class <%= classify(name) %>Module {}
+@Injectable()
+export class <%= classify(name) %> {}
