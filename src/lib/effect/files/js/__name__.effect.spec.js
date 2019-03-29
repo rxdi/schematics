@@ -6,7 +6,7 @@ describe('<%= classify(name) %> Effect', () => {
   beforeAll(async () => {
     await createTestBed({
       imports: [],
-      providers: [<%= classify(name) %>Effect]
+      effects: [<%= classify(name) %>Effect]
     }).toPromise();
   });
 
