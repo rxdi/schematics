@@ -40,7 +40,7 @@ export function main(options: ServiceOptions): Rule {
 function transform(source: ServiceOptions): ServiceOptions {
   const target: ServiceOptions = Object.assign({}, source);
   target.metadata = 'providers';
-  target.type = 'service';
+  target.type = 'effect';
 
   if (isNullOrUndefined(target.name)) {
     throw new SchematicsException('Option (name) is required.');

@@ -1,7 +1,7 @@
 import { Effect, OfType } from '@gapi/core';
 
 @Effect()
-export class <%= classify(name) %>Effects {
+export class <%= classify(name) %>Effect {
 
     @OfType<any>('<%= classify(name) %>')
     <%= classify(name) %>Action(result, payload, context) {
