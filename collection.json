@@ -3,7 +3,7 @@
   "schematics": {
     "application": {
       "factory": "./lib/application/application.factory#main",
-      "description": "Create a Nest application.",
+      "description": "Create a Gapi application.",
       "schema": "./lib/application/schema.json"
     },
     "angular-app": {
@@ -18,76 +18,81 @@
     },
     "controller": {
       "factory": "./lib/controller/controller.factory#main",
-      "description": "Create a Nest controller.",
+      "description": "Create a Gapi controller.",
       "schema": "./lib/controller/schema.json"
+    },
+    "type": {
+      "factory": "./lib/type/type.factory#main",
+      "description": "Create a Gapi type.",
+      "schema": "./lib/type/schema.json"
     },
     "decorator": {
       "factory": "./lib/decorator/decorator.factory#main",
-      "description": "Create a Nest decorator.",
+      "description": "Create a Gapi decorator.",
       "schema": "./lib/decorator/schema.json"
     },
     "filter": {
       "factory": "./lib/filter/filter.factory#main",
-      "description": "Create a Nest filter.",
+      "description": "Create a Gapi filter.",
       "schema": "./lib/filter/schema.json"
     },
     "gateway": {
       "factory": "./lib/gateway/gateway.factory#main",
-      "description": "Create a Nest gateway.",
+      "description": "Create a Gapi gateway.",
       "schema": "./lib/gateway/schema.json"
     },
     "guard": {
       "factory": "./lib/guard/guard.factory#main",
-      "description": "Create a Nest guard.",
+      "description": "Create a Gapi guard.",
       "schema": "./lib/guard/schema.json"
     },
     "interceptor": {
       "factory": "./lib/interceptor/interceptor.factory#main",
-      "description": "Create a Nest interceptor.",
+      "description": "Create a Gapi interceptor.",
       "schema": "./lib/interceptor/schema.json"
     },
     "interface": {
       "factory": "./lib/interface/interface.factory#main",
-      "description": "Create a Nest interface.",
+      "description": "Create a Gapi interface.",
       "schema": "./lib/interface/schema.json"
     },
     "middleware": {
       "factory": "./lib/middleware/middleware.factory#main",
-      "description": "Create a Nest middleware.",
+      "description": "Create a Gapi middleware.",
       "schema": "./lib/middleware/schema.json"
     },
     "module": {
       "factory": "./lib/module/module.factory#main",
-      "description": "Create a Nest module.",
+      "description": "Create a Gapi module.",
       "schema": "./lib/module/schema.json"
     },
     "pipe": {
       "factory": "./lib/pipe/pipe.factory#main",
-      "description": "Create a Nest pipe.",
+      "description": "Create a Gapi pipe.",
       "schema": "./lib/pipe/schema.json"
     },
     "provider": {
       "factory": "./lib/provider/provider.factory#main",
-      "description": "Create a Nest provider.",
+      "description": "Create a Gapi provider.",
       "schema": "./lib/provider/schema.json"
     },
     "service": {
       "factory": "./lib/service/service.factory#main",
-      "description": "Create a Nest service.",
+      "description": "Create a Gapi service.",
       "schema": "./lib/service/schema.json"
     },
     "resolver": {
       "factory": "./lib/resolver/resolver.factory#main",
-      "description": "Create a Nest resolver.",
+      "description": "Create a Gapi resolver.",
       "schema": "./lib/resolver/schema.json"
     },
     "configuration": {
       "factory": "./lib/configuration/configuration.factory#main",
-      "description": "Create a Nest CLI configuration."
+      "description": "Create a Gapi CLI configuration."
     },
     "library": {
       "factory": "./lib/library/library.factory#main",
-      "description": "Create a Nest library (mono-repo).",
+      "description": "Create a Gapi library (mono-repo).",
       "schema": "./lib/library/schema.json"
     }
   }
