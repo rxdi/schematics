@@ -1,6 +1,6 @@
 
 
-import { Plugin, PluginInterface } from '@rxdi/core';
+import { Plugin, PluginInterface, Inject } from '@rxdi/core';
 import { HAPI_SERVER } from '@rxdi/hapi';
 import { Server } from 'hapi';
 
@@ -15,14 +15,14 @@ export class <%= classify(name) %>Plugin implements PluginInterface {
 
   async register() {
     this.server.route({
-      method: 'GET',
-      path: '/test',
+      method: '<%= classify(method) %',
+      path: '/<%= dasherize(name) %>',
       handler: this.handler.bind(this)
     });
   }
 
   async handler(request, h) {
-    return ''Hello world'';
+    return 'Hello world';
   }
 
 }
