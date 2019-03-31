@@ -36,15 +36,10 @@
       "description": "Create a Gapi decorator.",
       "schema": "./lib/decorator/schema.json"
     },
-    "filter": {
-      "factory": "./lib/filter/filter.factory#main",
-      "description": "Create a Gapi filter.",
-      "schema": "./lib/filter/schema.json"
-    },
-    "gateway": {
-      "factory": "./lib/gateway/gateway.factory#main",
-      "description": "Create a Gapi gateway.",
-      "schema": "./lib/gateway/schema.json"
+    "plugin": {
+      "factory": "./lib/plugin/plugin.factory#main",
+      "description": "Create a Gapi plugin.",
+      "schema": "./lib/plugin/schema.json"
     },
     "guard": {
       "factory": "./lib/guard/guard.factory#main",
@@ -60,11 +55,6 @@
       "factory": "./lib/interface/interface.factory#main",
       "description": "Create a Gapi interface.",
       "schema": "./lib/interface/schema.json"
-    },
-    "middleware": {
-      "factory": "./lib/middleware/middleware.factory#main",
-      "description": "Create a Gapi middleware.",
-      "schema": "./lib/middleware/schema.json"
     },
     "module": {
       "factory": "./lib/module/module.factory#main",

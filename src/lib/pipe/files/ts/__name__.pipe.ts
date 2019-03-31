@@ -1,8 +1,8 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable } from '@rxdi/core';
 
 @Injectable()
-export class <%= classify(name) %>Pipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
+export class <%= classify(name) %>Pipe {
+  transform(value: any) {
     return value;
   }
 }
