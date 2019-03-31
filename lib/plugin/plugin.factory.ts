@@ -9,12 +9,10 @@ import {
   noop,
   Rule,
   SchematicContext,
-  SchematicsException,
   template,
   Tree,
   url,
 } from '@angular-devkit/schematics';
-import { isNullOrUndefined } from 'util';
 import {
   DeclarationOptions,
   ModuleDeclarator,
@@ -22,33 +20,35 @@ import {
 import { ModuleFinder } from '../../utils/module.finder';
 import { Location, NameParser } from '../../utils/name.parser';
 import { mergeSourceRoot } from '../../utils/source-root.helpers';
-import { ServiceOptions } from './plugin.schema';
+import { DEFAULT_LANGUAGE } from '../defaults';
+import { PluginOptions } from './plugin.schema';
 
-export function main(options: ServiceOptions): Rule {
+const ELEMENT_METADATA = 'plugins';
+const ELEMENT_TYPE = 'plugin';
+
+export function main(options: PluginOptions): Rule {
   options = transform(options);
   return (tree: Tree, context: SchematicContext) => {
     return branchAndMerge(
       chain([
         mergeSourceRoot(options),
-        addDeclarationToModule(options),
         mergeWith(generate(options)),
+        addDeclarationToModule(options),
       ]),
     )(tree, context);
   };
 }
 
-function transform(source: ServiceOptions): ServiceOptions {
-  const target: ServiceOptions = Object.assign({}, source);
-  target.metadata = 'plugins';
-  target.type = 'plugin';
+function transform(source: PluginOptions): PluginOptions {
+  const target: PluginOptions = Object.assign({}, source);
+  target.metadata = ELEMENT_METADATA;
+  target.type = ELEMENT_TYPE;
 
-  if (isNullOrUndefined(target.name)) {
-    throw new SchematicsException('Option (name) is required.');
-  }
   const location: Location = new NameParser().parse(target);
   target.name = strings.dasherize(location.name);
   target.path = strings.dasherize(location.path);
-  target.language = target.language !== undefined ? target.language : 'ts';
+  target.language =
+    target.language !== undefined ? target.language : DEFAULT_LANGUAGE;
 
   target.path = target.flat
     ? target.path
@@ -56,7 +56,7 @@ function transform(source: ServiceOptions): ServiceOptions {
   return target;
 }
 
-function generate(options: ServiceOptions) {
+function generate(options: PluginOptions) {
   return (context: SchematicContext) =>
     apply(url(join('./files' as Path, options.language)), [
       options.spec ? noop() : filter(path => !path.endsWith('.spec.ts')),
@@ -68,7 +68,7 @@ function generate(options: ServiceOptions) {
     ])(context);
 }
 
-function addDeclarationToModule(options: ServiceOptions): Rule {
+function addDeclarationToModule(options: PluginOptions): Rule {
   return (tree: Tree) => {
     if (options.skipImport !== undefined && options.skipImport) {
       return tree;

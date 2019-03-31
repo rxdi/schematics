@@ -1,39 +1,43 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsNestService",
-  "title": "Gapi plugin Options Schema",
+  "id": "SchematicsNestController",
+  "title": "Nest Controller Options Schema",
   "type": "object",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of the service.",
+      "description": "The name of the controller.",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the service?"
-    },
-    "method": {
-      "type": "string",
-      "description": "The name of the service.",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": "What name would you like to use for the service?"
+      "x-prompt": "What name would you like to use for the controller?"
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path to create the service."
+      "description": "The path to create the controller."
+    },
+    "method": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the controller."
     },
     "language": {
       "type": "string",
-      "description": "Gapi plugin language (ts/js)."
+      "description": "Nest controller language (ts/js)."
     },
     "sourceRoot": {
       "type": "string",
-      "description": "Gapi plugin source root directory."
+      "description": "Nest controller source root directory."
+    },
+    "skipImport": {
+      "description": "Flag to skip the module import.",
+      "default": false
+    },
+    "module": {
+      "type": "string",
+      "description": "Allows specification of the declaring module."
     },
     "flat": {
       "default": false,
