@@ -6,136 +6,140 @@ import {
 import * as path from 'path';
 import { ApplicationOptions } from '../application/application.schema';
 import { ModuleOptions } from '../module/module.schema';
-import { ServiceOptions } from './service.schema';
+import { ControllerOptions } from './controller.schema';
 
-describe('Service Factory', () => {
+describe('Controller Factory', () => {
   const runner: SchematicTestRunner = new SchematicTestRunner(
     '.',
     path.join(process.cwd(), 'src/collection.json'),
   );
   it('should manage name only', () => {
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'foo',
       skipImport: true,
-      flat: true,
+      spec: false,
+      flat: false,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
+
     expect(
-      files.find(filename => filename === '/foo.service.ts'),
+      files.find(filename => filename === '/foo/foo.controller.ts'),
     ).toBeDefined();
     expect(
-      files.find(filename => filename === '/foo.service.spec.ts'),
-    ).toBeDefined();
-    expect(tree.readContent('/foo.service.ts')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+      files.find(filename => filename === '/foo/foo.controller.spec.ts'),
+    ).not.toBeDefined();
+    expect(tree.readContent('/foo/foo.controller.ts')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooService {}\n',
+        "@Controller('foo')\n" +
+        'export class FooController {}\n',
     );
   });
-  it('should manage name as a path', () => {
-    const options: ServiceOptions = {
+  it('should manage name has a path', () => {
+    const options: ControllerOptions = {
       name: 'bar/foo',
       skipImport: true,
-      flat: true,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
     expect(
-      files.find(filename => filename === '/bar/foo.service.ts'),
+      files.find(filename => filename === '/bar/foo/foo.controller.ts'),
     ).toBeDefined();
     expect(
-      files.find(filename => filename === '/bar/foo.service.spec.ts'),
+      files.find(filename => filename === '/bar/foo/foo.controller.spec.ts'),
     ).toBeDefined();
-    expect(tree.readContent('/bar/foo.service.ts')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+    expect(tree.readContent('/bar/foo/foo.controller.ts')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooService {}\n',
+        "@Controller('foo')\n" +
+        'export class FooController {}\n',
     );
   });
   it('should manage name and path', () => {
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'foo',
       path: 'bar',
       skipImport: true,
-      flat: true,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
     expect(
-      files.find(filename => filename === '/bar/foo.service.ts'),
+      files.find(filename => filename === '/bar/foo/foo.controller.ts'),
     ).toBeDefined();
     expect(
-      files.find(filename => filename === '/bar/foo.service.spec.ts'),
+      files.find(filename => filename === '/bar/foo/foo.controller.spec.ts'),
     ).toBeDefined();
-    expect(tree.readContent('/bar/foo.service.ts')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+    expect(tree.readContent('/bar/foo/foo.controller.ts')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooService {}\n',
+        "@Controller('foo')\n" +
+        'export class FooController {}\n',
     );
   });
   it('should manage name to dasherize', () => {
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'fooBar',
       skipImport: true,
-      flat: true,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
     expect(
-      files.find(filename => filename === '/foo-bar.service.ts'),
+      files.find(filename => filename === '/foo-bar/foo-bar.controller.ts'),
     ).toBeDefined();
-    expect(tree.readContent('/foo-bar.service.ts')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+    expect(
+      files.find(
+        filename => filename === '/foo-bar/foo-bar.controller.spec.ts',
+      ),
+    ).toBeDefined();
+    expect(tree.readContent('/foo-bar/foo-bar.controller.ts')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooBarService {}\n',
+        "@Controller('foo-bar')\n" +
+        'export class FooBarController {}\n',
     );
   });
   it('should manage path to dasherize', () => {
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'barBaz/foo',
       skipImport: true,
-      flat: true,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
     expect(
-      files.find(filename => filename === '/bar-baz/foo.service.ts'),
+      files.find(filename => filename === '/bar-baz/foo/foo.controller.ts'),
     ).toBeDefined();
     expect(
-      files.find(filename => filename === '/bar-baz/foo.service.spec.ts'),
+      files.find(
+        filename => filename === '/bar-baz/foo/foo.controller.spec.ts',
+      ),
     ).toBeDefined();
-    expect(tree.readContent('/bar-baz/foo.service.ts')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+    expect(tree.readContent('/bar-baz/foo/foo.controller.ts')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooService {}\n',
+        "@Controller('foo')\n" +
+        'export class FooController {}\n',
     );
   });
   it('should manage javascript file', () => {
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'foo',
-      skipImport: true,
       language: 'js',
-      flat: true,
+      skipImport: true,
     };
-    const tree: UnitTestTree = runner.runSchematic('service', options);
+    const tree: UnitTestTree = runner.runSchematic('controller', options);
     const files: string[] = tree.files;
     expect(
-      files.find(filename => filename === '/foo.service.js'),
+      files.find(filename => filename === '/foo/foo.controller.js'),
     ).toBeDefined();
     expect(
-      files.find(filename => filename === '/foo.service.spec.js'),
+      files.find(filename => filename === '/foo/foo.controller.spec.js'),
     ).toBeDefined();
-    expect(tree.readContent('/foo.service.js')).toEqual(
-      "import { Injectable } from '@nestjs/common';\n" +
+    expect(tree.readContent('/foo/foo.controller.js')).toEqual(
+      "import { Controller } from '@nestjs/common';\n" +
         '\n' +
-        '@Injectable()\n' +
-        'export class FooService {}\n',
+        "@Controller('foo')\n" +
+        'export class FooController {}\n',
     );
   });
   it('should manage declaration in app module', () => {
@@ -143,21 +147,20 @@ describe('Service Factory', () => {
       name: '',
     };
     let tree: UnitTestTree = runner.runSchematic('application', app);
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'foo',
-      flat: true,
     };
-    tree = runner.runSchematic('service', options, tree);
+    tree = runner.runSchematic('controller', options, tree);
     expect(tree.readContent(normalize('/src/app.module.ts'))).toEqual(
       "import { Module } from '@nestjs/common';\n" +
         "import { AppController } from './app.controller';\n" +
         "import { AppService } from './app.service';\n" +
-        "import { FooService } from './foo.service';\n" +
+        "import { FooController } from './foo/foo.controller';\n" +
         '\n' +
         '@Module({\n' +
         '  imports: [],\n' +
-        '  controllers: [AppController],\n' +
-        '  providers: [AppService, FooService],\n' +
+        '  controllers: [AppController, FooController],\n' +
+        '  providers: [AppService],\n' +
         '})\n' +
         'export class AppModule {}\n',
     );
@@ -171,18 +174,16 @@ describe('Service Factory', () => {
       name: 'foo',
     };
     tree = runner.runSchematic('module', module, tree);
-    const options: ServiceOptions = {
+    const options: ControllerOptions = {
       name: 'foo',
-      path: 'foo',
-      flat: true,
     };
-    tree = runner.runSchematic('service', options, tree);
+    tree = runner.runSchematic('controller', options, tree);
     expect(tree.readContent(normalize('/src/foo/foo.module.ts'))).toEqual(
       "import { Module } from '@nestjs/common';\n" +
-        "import { FooService } from './foo.service';\n" +
+        "import { FooController } from './foo.controller';\n" +
         '\n' +
         '@Module({\n' +
-        '  providers: [FooService]\n' +
+        '  controllers: [FooController]\n' +
         '})\n' +
         'export class FooModule {}\n',
     );

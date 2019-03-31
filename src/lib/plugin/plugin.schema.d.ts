@@ -1,16 +1,16 @@
 import { Path } from '@angular-devkit/core';
 
-export interface ServiceOptions {
+export interface PluginOptions {
   /**
-   * The name of the service.
+   * The name of the controller.
    */
   name: string;
   /**
-   * The path to create the service.
+   * The path to create the controller.
    */
-  path?: string;
+  path?: string | Path;
   /**
-   * The path to insert the service declaration.
+   * The path to insert the controller declaration.
    */
   module?: Path;
   /**

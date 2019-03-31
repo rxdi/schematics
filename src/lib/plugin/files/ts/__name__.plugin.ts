@@ -15,7 +15,7 @@ export class <%= classify(name) %>Plugin implements PluginInterface {
 
   async register() {
     this.server.route({
-      method: '<%= classify(method) %',
+      method: '<%= classify(method) %>',
       path: '/<%= dasherize(name) %>',
       handler: this.handler.bind(this)
     });
