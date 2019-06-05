@@ -1,4 +1,5 @@
-import { Controller, GraphQLControllerOptions, Query, Type, GraphQLObjectType, GraphQLString } from '@gapi/core';
+import { Controller, GraphQLControllerOptions, Query, Type } from '@gapi/core';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const <%= classify(name) %>Type = new GraphQLObjectType({
     name: '<%= classify(name) %>Type',

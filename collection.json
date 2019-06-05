@@ -21,6 +21,11 @@
       "description": "Create a Gapi controller.",
       "schema": "./lib/controller/schema.json"
     },
+    "component": {
+      "factory": "./lib/component/component.factory#main",
+      "description": "Create a Gapi component.",
+      "schema": "./lib/component/schema.json"
+    },
     "type": {
       "factory": "./lib/type/type.factory#main",
       "description": "Create a Gapi type.",
