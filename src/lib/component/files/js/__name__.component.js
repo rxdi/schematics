@@ -1,6 +1,6 @@
 import {
   html,
-  customElement,
+  Component,
   async,
   LitElement,
   property,
@@ -13,7 +13,8 @@ import { timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouteParams } from '@rxdi/router';
 
-@customElement('<%= dasherize(name) %>-component', {
+@Component({
+  selector: '<%= dasherize(name) %>-component',
   template(this: <%= classify(name) %>Component) {
     return html`
       <header>
