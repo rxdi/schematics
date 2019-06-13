@@ -13,6 +13,9 @@ import { timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouteParams } from '@rxdi/router';
 
+/**
+ * @customElement '<%= dasherize(name) %>-component'
+ */
 @Component({
   selector: '<%= dasherize(name) %>-component',
   template(this: <%= classify(name) %>Component) {
