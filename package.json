@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "rm -rf utils lib && tsc && cp -r ./src/* .",
-    "npm-publish": "npm publish --update-readme --access public"
+    "npm-publish": "npm publish --update-readme --access public",
+    "test":"echo Test Schematics"
   },
   "dependencies": {
     "@angular-devkit/core": "^7.3.7",
@@ -16,7 +17,7 @@
   },
   "schematics": "./collection.json",
   "devDependencies": {
-    "@types/node": "^11.12.0",
-    "typescript": "^3.3.4000"
+    "@types/node": "^12.0.10",
+    "typescript": "^3.5.3"
   }
 }
